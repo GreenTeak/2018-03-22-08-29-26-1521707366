@@ -2,9 +2,7 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
@@ -70,6 +68,15 @@ public class Add {
         }
         return median;
     }
+    public List<Integer> getOddofArray(List<Integer> arrayList){
+        List<Integer> median=new ArrayList<>();
+        for(Integer num:arrayList){
+            if(num.intValue()%2==1){
+                median.add(num);
+            }
+        }
+        return median;
+    }
     public double getMedianOfEvenIndex(List<Integer> arrayList) {
         double medianofeven=0;
         Add add=new Add();
@@ -102,11 +109,35 @@ public class Add {
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        Add add=new Add();
+        List<Integer> evenelement=add.getEvenofArray(arrayList);
+        List<Integer> unrepeatedFromEven=new ArrayList<>();
+        for(Integer num:evenelement){
+            if(!add.isIncludedInEvenIndex(unrepeatedFromEven,num)){
+                unrepeatedFromEven.add(num);
+            }
+        }
+        return unrepeatedFromEven;
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        Add add=new Add();
+        List<Integer> even=add.getEvenofArray(arrayList);
+        Collections.sort(even, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        List<Integer> Odd=add.getOddofArray(arrayList);
+        Collections.sort(Odd, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+               return o2.compareTo(o1);
+            }
+        });
+        even.addAll(Odd);
+        return even;
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
