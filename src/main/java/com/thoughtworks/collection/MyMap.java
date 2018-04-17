@@ -1,5 +1,6 @@
 package com.thoughtworks.collection;
 
+import com.sun.org.apache.xerces.internal.xs.StringList;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -13,9 +14,7 @@ public class MyMap {
             "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
     private List<String> letterList = Arrays.asList(letters);
 
-    public MyMap(List<Integer> array) {
-        this.array = array;
-    }
+    public MyMap(List<Integer> array) { this.array = array; }
 
     public List<Integer> getTriple() {
         Add add=new Add();
@@ -24,18 +23,47 @@ public class MyMap {
         return list;
     }
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        List<String> Letter=new ArrayList<>();
+        for(Integer isToLetter:array){
+            //int Index=isToLetter.intValue();
+           // Letter.add(letters[Index-1]);
+            Letter=intToLetter(isToLetter,Letter);
+        }
+        return Letter;
     }
-
+    public List<String> intToLetter(Integer isToLetter,List<String> Letter){
+        int Index=isToLetter.intValue();
+        Letter.add(letters[Index-1]);
+        return Letter;
+    }
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        List<String> list=new ArrayList<>();
+        int len=letters.length;
+        for(Integer isToLetter:array){
+            int Index=isToLetter.intValue();
+            String s=new String();
+            while (Index>0){
+                int m=Index%len;
+                if(m==0) m=26;
+                s=(char)(m+96)+s;
+                Index=(Index-m)/len;
+            }
+            list.add(s);
+        }
+        return list;
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        List<Integer> list=new ArrayList<>();
+        Add add=new Add();
+        list=add.decendofList(array);
+        return list;
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        List<Integer> list=new ArrayList<>();
+        Add add=new Add();
+        list=add.ascendofList(array);
+        return list;
     }
 }

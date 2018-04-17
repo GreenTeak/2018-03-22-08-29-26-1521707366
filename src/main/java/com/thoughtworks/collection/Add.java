@@ -108,6 +108,15 @@ public class Add {
         if(evennum==0) return 0;
         return medianofeven/evennum;
     }
+    public double getAverageofIndex(List<Integer> arrayList) {//求数组平均值
+        int len = arrayList.size();
+        double total = 0;
+        for (Integer i : arrayList) {
+            total += i.intValue();
+        }
+        if (len == 0) return 0;
+        return total / len;
+    }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
         Add add=new Add();
@@ -132,7 +141,6 @@ public class Add {
         for(Integer num:arrayList){
             if(!unrepeated.contains(num)){
                 unrepeated.add(num);
-                System.out.print(num);
             }
         }
         return unrepeated;
@@ -156,6 +164,24 @@ public class Add {
         });
         even.addAll(Odd);
         return even;
+    }
+    public List<Integer> ascendofList(List<Integer> arrayList){//升序
+        Collections.sort(arrayList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return arrayList;
+    }
+    public List<Integer> decendofList(List<Integer> arrayList){//将序
+        Collections.sort(arrayList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
+        return arrayList;
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
