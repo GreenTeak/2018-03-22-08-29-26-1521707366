@@ -89,13 +89,20 @@ public class Add {
         double medianofeven=0;
         Add add=new Add();
         List<Integer> median=add.getEvenofArray(arrayList);
-        int evennum=median.size();
-        int Index=evennum/2;
-        if(evennum%2==0){
-            medianofeven=(median.get(Index)+median.get(Index-1))/2;
-        }
-        else medianofeven=median.get(Index);
+        medianofeven=getMedianofIndex(median);
         return medianofeven;
+    }
+    public double getMedianofIndex(List<Integer> arrayList){
+        int len=arrayList.size();
+        double Median=0;
+        int Index=len/2;
+        if(len%2==0){
+            double low=arrayList.get(Index-1);
+            double high=arrayList.get(Index);
+            Median=(low+high)/2;
+        }
+        else Median=arrayList.get(Index);
+        return Median;
     }
 
     public double getAverageOfEvenIndex(List<Integer> arrayList) {

@@ -34,31 +34,49 @@ public class Reduce {
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        Add add=new Add();
+        double median=add.getMedianofIndex(arrayList);
+        return  median;
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        Add add=new Add();
+        List<Integer> list=add.getEvenofArray(arrayList);
+        return list.get(0);
     }
 
     public int getIndexOfFirstEven() {
-        throw new NotImplementedException();
+      int firstEven=getFirstEven();
+      int index=arrayList.indexOf(firstEven);
+      return index;
     }
 
-    public boolean isEqual(List<Integer> arrayList) {
-        throw new NotImplementedException();
+    public boolean isEqual(List<Integer> arraylist) {
+        int lenA=arraylist.size();
+        int lenB=arrayList.size();
+        if(lenA!=lenB) return false;
+        for(Integer i:arrayList)
+            if(!arraylist.contains(i))
+                return false;
+        return true;
     }
 
     //实现接口SingleLink，然后再此函数内使用
     public Double getMedianInLinkList(SingleLink singleLink) {
+
         throw new NotImplementedException();
     }
 
     public int getLastOdd() {
-        throw new NotImplementedException();
+        Add add=new Add();
+        List<Integer> list=add.getOddofArray(arrayList);
+        int len=list.size()-1;
+        return list.get(len);
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        int lastOdd=getLastOdd();
+        int index=arrayList.indexOf(lastOdd);
+        return index;
     }
 }
