@@ -5,12 +5,53 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reduce {
+public class Reduce implements SingleLink<Integer> {
 
     List<Integer> arrayList;
 
     public Reduce(List<Integer> arrayList) {
         this.arrayList = arrayList;
+    }
+
+    @Override
+    public Integer getHeaderData(){
+        return arrayList.get(0);
+    }
+
+    @Override
+    public Integer getTailData() {
+        return arrayList.get(arrayList.size()-1);
+    }
+
+    @Override
+    public int size(){
+        return arrayList.size();
+    }
+    @Override
+    public boolean isEmpty(){
+        return  arrayList.isEmpty();
+    }
+    @Override
+    public boolean deleteFirst(){
+        Integer first=getHeaderData();
+        return arrayList.remove(first);
+    }
+    @Override
+    public boolean deleteLast(){
+        Integer end=getTailData();
+        return arrayList.remove(end);
+    }
+    @Override
+    public void addHeadPointer(Integer item){
+        arrayList.add(0,item);
+    }
+    @Override
+    public void addTailPointer(Integer item){
+        arrayList.add(item);
+    }
+    @Override
+    public Integer getNode(int index){
+        return arrayList.get(index-1);
     }
 
     public int getMaximum() {
@@ -62,9 +103,20 @@ public class Reduce {
     }
 
     //实现接口SingleLink，然后再此函数内使用
-    public Double getMedianInLinkList(SingleLink singleLink) {
-
-        throw new NotImplementedException();
+    public Double getMedianInLinkList(SingleLink singleLink) {//为什么可以直接在这个用接口
+        this.arrayList.stream().sorted().mapToInt(num->num).forEach(singleLink::addTailPointer);
+        return (double)((int)singleLink.getNode(this.arrayList.size()/2)+(int)singleLink.getNode(this.arrayList.size()/2+1))/2;
+        /*int size=arrayList.size();
+        Double Median=0.0;
+        int Index=size/2;
+        System.out.print(arrayList);
+       // if(size%2==0){
+           // System.out.print( singleLink.getNode(1));
+            //Median=(double)((int)this.getNode(Index)+(int)singleLink.getNode(Index+1))/2;
+       // }
+       // else Median=(double) singleLink.getNode(Index);
+        return (double)singleLink.getNode(0);
+        */
     }
 
     public int getLastOdd() {
