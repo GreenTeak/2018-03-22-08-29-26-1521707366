@@ -43,7 +43,6 @@ public class Filter {
         for(Integer num:array){
             if(!differentElement.contains(num))
                 differentElement.add(num);
-
         }
         return differentElement;
     }

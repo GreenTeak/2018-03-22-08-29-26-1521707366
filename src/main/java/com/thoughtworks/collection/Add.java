@@ -39,6 +39,14 @@ public class Add {
         }
         return suntripleandtwo;
     }
+    public List<Integer> getTripleofList(List<Integer> arrayList){//list的三倍
+        List<Integer> triple=new ArrayList<>();
+        for (Integer num:arrayList){
+            int i=num.intValue();
+            triple.add(i*3);
+        }
+        return triple;
+    }
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
         List<Integer> tripleofoddandtwo=new ArrayList<>();
         for (Integer num:arrayList){
@@ -108,7 +116,7 @@ public class Add {
         return SpElement;
     }
 
-    public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
+    public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {//这部分需不需要重新写
         Add add=new Add();
         List<Integer> evenelement=add.getEvenofArray(arrayList);
         List<Integer> unrepeatedFromEven=new ArrayList<>();
@@ -118,6 +126,16 @@ public class Add {
             }
         }
         return unrepeatedFromEven;
+    }
+    public List<Integer> getUnpreatedIndex(List<Integer> arrayList){//在后面需要这部分抽象出来的时候，原来的代码需不要重新写?
+        List<Integer> unrepeated=new ArrayList<>();
+        for(Integer num:arrayList){
+            if(!unrepeated.contains(num)){
+                unrepeated.add(num);
+                System.out.print(num);
+            }
+        }
+        return unrepeated;
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
